@@ -18,7 +18,3 @@ services:
         value: 7d
       - key: CLIENT_URL
         value: https://school-crm-frontend-gamma.vercel.app
-    disk:
-      name: sqlite-data
-      mountPath: /opt/render/project/src
-      sizeGB: 1
