@@ -10,11 +10,19 @@ services:
         value: production
       - key: PORT
         value: 10000
-      - key: DB_STORAGE
-        value: /tmp/database.sqlite
+      - key: DB_URL
+        fromDatabase:
+          name: school-crm-db
+          property: connectionString
       - key: JWT_SECRET
         generateValue: true
       - key: JWT_EXPIRE
         value: 7d
       - key: CLIENT_URL
         value: https://school-crm-frontend-gamma.vercel.app
+    region: oregon
+
+  - type: postgresql
+    name: school-crm-db
+    plan: free
+    region: oregon
