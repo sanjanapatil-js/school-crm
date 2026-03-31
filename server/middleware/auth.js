@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../config/config');
-const { User } = require('../models');
+const { User, Student, Teacher } = require('../models');
 
 const authMiddleware = async (req, res, next) => {
   try {
@@ -13,7 +13,19 @@ const authMiddleware = async (req, res, next) => {
     const decoded = jwt.verify(token, JWT_SECRET);
     
     const user = await User.findByPk(decoded.userId, {
-      attributes: { exclude: ['password'] }
+      attributes: { exclude: ['password'] },
+      include: [
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['id', 'rollNumber', 'classId', 'section']
+        },
+        {
+          model: Teacher,
+          as: 'teacher',
+          attributes: ['id', 'employeeId', 'department']
+        }
+      ]
     });
 
     if (!user) {
