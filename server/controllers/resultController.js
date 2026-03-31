@@ -194,7 +194,8 @@ const deleteResult = async (req, res) => {
 
 const getStudentReport = async (req, res) => {
   try {
-    const { studentId, academicYear } = req.query;
+    const { studentId } = req.params;
+    const { academicYear } = req.query;
 
     const whereClause = { studentId };
     if (academicYear) {
