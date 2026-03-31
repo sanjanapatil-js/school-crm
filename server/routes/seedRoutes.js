@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const seedData = require('../seed');
 
-router.post('/', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     await seedData();
     res.json({ 

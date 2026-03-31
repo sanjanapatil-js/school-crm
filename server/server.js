@@ -34,7 +34,7 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Server is running' });
 });
 
-app.post('/api/seed', require('./routes/seedRoutes'));
+app.get('/api/seed', require('./routes/seedRoutes'));
 
 app.use(errorHandler);
 
