@@ -22,7 +22,7 @@ services:
         value: https://school-crm-frontend-gamma.vercel.app
     region: oregon
 
-  - type: postgres
-    name: school-crm-db
+databases:
+  - name: school-crm-db
     plan: free
     region: oregon
