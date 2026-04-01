@@ -71,6 +71,12 @@ const Students = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Validate password length for new students
+      if (!currentStudent && formData.password && formData.password.length < 6) {
+        alert('Password must be at least 6 characters long');
+        return;
+      }
+
       if (currentStudent) {
         await studentAPI.update(currentStudent.id, formData);
       } else {
@@ -81,6 +87,7 @@ const Students = () => {
       resetForm();
     } catch (error) {
       console.error('Error saving student:', error);
+      alert(error.response?.data?.message || 'Error saving student');
     }
   };
 

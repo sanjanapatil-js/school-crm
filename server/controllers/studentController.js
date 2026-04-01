@@ -94,12 +94,16 @@ const createStudent = async (req, res) => {
   try {
     const { email, password, firstName, lastName, phone, address, ...studentData } = req.body;
 
+    console.log('Creating student with email:', email);
+    console.log('Password received:', password ? 'Yes (length: ' + password.length + ')' : 'No');
+
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       return res.status(400).json({ message: 'Email already exists' });
     }
 
     const hashedPassword = await hashPassword(password || 'password123');
+    console.log('Password hashed successfully');
 
     const user = await User.create({
       email,
@@ -110,6 +114,8 @@ const createStudent = async (req, res) => {
       phone,
       address
     });
+
+    console.log('User created with ID:', user.id);
 
     const student = await Student.create({
       userId: user.id,
