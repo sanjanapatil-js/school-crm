@@ -249,8 +249,11 @@ const Students = () => {
             <InputField
               label="Phone"
               name="phone"
+              type="tel"
               value={formData.phone}
               onChange={handleChange}
+              maxLength="10"
+              pattern="[0-9]{10}"
             />
             <InputField
               label="Roll Number"
@@ -298,8 +301,11 @@ const Students = () => {
             <InputField
               label="Parent Phone"
               name="parentPhone"
+              type="tel"
               value={formData.parentPhone}
               onChange={handleChange}
+              maxLength="10"
+              pattern="[0-9]{10}"
             />
             <InputField
               label="Parent Email"
